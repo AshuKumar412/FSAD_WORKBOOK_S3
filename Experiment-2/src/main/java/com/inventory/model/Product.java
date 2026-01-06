@@ -7,17 +7,14 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    // You can change to AUTO or SEQUENCE to observe difference
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
     private String name;
 
     private String description;
-
     private double price;
-
     private int quantity;
 
     // Getters and Setters

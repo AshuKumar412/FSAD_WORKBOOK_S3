@@ -33,8 +33,8 @@
             true
         </property>
 
-        <!-- Entity Mapping -->
-        <mapping class="com.klu.Entity.Student"/>
+        <!-- Entity Mapping (FIXED) -->
+        <mapping class="com.inventory.model.Product"/>
 
     </session-factory>
 </hibernate-configuration>

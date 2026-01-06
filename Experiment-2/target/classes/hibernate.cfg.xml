@@ -8,7 +8,7 @@
         </property>
 
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/studentAppdb
+            jdbc:mysql://localhost:3306/inventorydb1
         </property>
 
         <property name="hibernate.connection.username">
@@ -33,8 +33,8 @@
             true
         </property>
 
-        <!-- Entity Mapping -->
-        <mapping class="com.klu.Entity.Student"/>
+        <!-- Entity Mapping (FIXED) -->
+        <mapping class="com.inventory.model.Product"/>
 
     </session-factory>
 </hibernate-configuration>
