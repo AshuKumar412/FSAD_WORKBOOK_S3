@@ -1,0 +1,2 @@
+This project demonstrates Git version control.
+Learning git init, add, commit, branch, and merge.
