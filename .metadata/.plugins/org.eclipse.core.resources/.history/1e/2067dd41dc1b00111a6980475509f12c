@@ -1,0 +1,25 @@
+package com.klu.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.klu.model.Student;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public Student student() {
+
+        Student s = new Student(
+                2400032678,
+                "Ashu Kumar",
+                "CSE",
+                1);
+
+        s.setCourse("Computer Science");
+        s.setYear(1);
+
+        return s;
+    }
+}

@@ -1,0 +1,45 @@
+package com.klu.app;
+
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.klu.model.Student;
+
+public class MainApp {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Student ID: ");
+        long id = sc.nextLong();
+        sc.nextLine();
+
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Course: ");
+        String course = sc.nextLine();
+
+        System.out.print("Enter Year: ");
+        int year = sc.nextInt();
+
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        Student s = (Student) context.getBean("student");
+
+        s.setCourse(course);
+        s.setYear(year);
+
+        System.out.println("\nStudent Details");
+        System.out.println("Student ID : " + id);
+        System.out.println("Name       : " + name);
+        System.out.println("Course     : " + course);
+        System.out.println("Year       : " + year);
+
+        sc.close();
+    }
+}

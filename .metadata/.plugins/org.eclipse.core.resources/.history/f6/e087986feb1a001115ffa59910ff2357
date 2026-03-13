@@ -1,0 +1,54 @@
+package com.inventory.app;
+
+import java.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.iventory.model.*;
+import com.inventory.util.*;
+public class MainApp {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Session session;
+		Transaction tx;
+		
+		int choice;
+		
+		do {
+			System.out.println("1. Add Product");
+			System.out.println("2. View Product");
+			System.out.println("3. Update Product");
+			System.out.println("4. Delete Product");
+			System.out.println("5. Exit");
+			
+			System.out.print("Enter your choice : ");
+			choice = sc.nextInt();
+			
+			switch(choice) {
+			
+			case 1:
+				
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				System.out.println("Enter product name : ");
+				String name = sc.next();
+				System.out.println("Enter product Description : ");
+				String desc = sc.next();
+				System.out.println("Enter product price : ");
+				double price = sc.nextDouble();
+				System.out.println("Enter product qauntity : ");
+				int quantity = sc.nextInt();
+				
+				Product p = new Product(name, desc, price, quantity);
+				
+				session.save(p);
+				tx.commit();
+				session.close();
+				
+				System.out.println("Product added Successfully");
+				break;
+			}
+			
+		}while(choice!=5);
+		sc.close();
+	}
+}

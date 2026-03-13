@@ -1,0 +1,11 @@
+<hibernate-configuration>
+<session-factory>
+<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+<property></property>
+<property></property>
+<property></property>
+<property></property>
+<property></property>
+<property></property>
+</session-factory>
+</hibernate-configuration>

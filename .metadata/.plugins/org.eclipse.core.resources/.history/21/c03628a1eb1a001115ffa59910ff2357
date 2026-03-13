@@ -1,0 +1,136 @@
+package com.inventory.app;
+
+import java.util.*;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import com.iventory.model.*;
+import com.inventory.util.*;
+public class MainApp {
+	//private static final Session HibernateUtil = null;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Session session;
+		Transaction tx;
+		
+		int choice;
+		
+		do {
+			System.out.println("1. Add Product");
+			System.out.println("2. View Product");
+			System.out.println("3. Update Product");
+			System.out.println("4. Delete Product");
+			System.out.println("5. Exit");
+			
+			System.out.print("Enter your choice : ");
+			choice = sc.nextInt();
+			
+			switch(choice) {
+			
+			case 1:
+				
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				System.out.println("Enter product name : ");
+				String name = sc.next();
+				System.out.println("Enter product Description : ");
+				String desc = sc.next();
+				System.out.println("Enter product price : ");
+				double price = sc.nextDouble();
+				System.out.println("Enter product qauntity : ");
+				int quantity = sc.nextInt();
+				
+				Product p = new Product(name, desc, price, quantity);
+				
+				session.save(p);
+				tx.commit();
+				session.close();
+				
+				System.out.println("Product added Successfully");
+				break;
+				
+			case 2:
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				
+				System.out.println("Enter Product id : ");
+				int id = sc.nextInt();
+				
+				Product pr = session.get(Product.class, id);  // fetch product using primary key
+				
+				if(pr!=null) {
+					System.out.println("Product Name : "+pr.getName());
+					System.out.println("Product Description : "+pr.getDesc());
+					System.out.println("Product Price : "+pr.getPrice());
+					System.out.println("Product Quantity : "+pr.getQuantity());
+				}else {
+					System.out.println("Product not Found");
+				}
+				session.close();
+				break;
+				
+			case 3:
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				
+				System.out.println("Enter Product id : ");
+				int uid = sc.nextInt();
+				
+				Product pu = session.get(Product.class, uid);
+				
+				if(pu!=null) {
+					System.out.println("Enter New Product Name : ");
+					String newName = sc.next();
+					pu.setName(newName);
+					
+					
+					System.out.println("Enter New Description : ");
+					String newDesc = sc.next();
+					pu.setDesc(newDesc);
+					
+					
+					System.out.println("Enter New Price : ");
+					double newPrice = sc.nextDouble();
+					pu.setPrice(newPrice);
+					
+					
+					System.out.println("Enter New Quantity : ");
+					int newQuantity = sc.nextInt();
+					pu.setQuantity(newQuantity);
+					
+					session.update(pu);
+					tx.commit();
+					
+					System.out.println("Record updated Successfully");
+				}else {
+					System.out.println("Product not Found");
+				}
+				session.close();
+				break;
+				
+			case 4:
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				
+				System.out.println("Enter Product id : ");
+				int did = sc.nextInt();
+				
+				Product pd = session.get(Product.class, did);
+				
+				if(pd!=null){
+					session.delete(pd);
+					tx.commit();
+					
+					System.out.println("Product Deleted Successfully");
+					
+				}else {
+					System.out.println("Product Not Found");
+				}
+				session.close();
+				break;
+			}
+			
+		}while(choice!=5);
+		sc.close();
+	}
+}

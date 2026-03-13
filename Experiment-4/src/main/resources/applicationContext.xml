@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+ <bean id="student"
+       class="com.klu.model.Student">
+
+  <!-- Constructor Injection -->
+  <constructor-arg value="0"/>
+  <constructor-arg value="Default"/>
+  <constructor-arg value="None"/>
+  <constructor-arg value="0"/>
+
+ </bean>
+
+</beans>
